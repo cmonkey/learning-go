@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"formulas"
 )
 
 func main(){
@@ -24,6 +25,7 @@ func main(){
 
 	mymath()
 
+	formulasFunc()
 }
 
 func mymath(){
@@ -31,6 +33,11 @@ func mymath(){
 	circum := pi * 6
 	surface := math.Pow(6,2) * pi / 4
 	fmt.Printf("circum %f surface %f", circum, surface)
+}
+
+func formulasFunc(){
+	d := 6.25242
+	fmt.Printf("circum %f surface %f", formulas.Circum(d), formulas.Surface(d))
 }
 
 func world() string {
