@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"bufio"
 	"encoding/csv"
+	"compress/gzip"
 )
 
 func main(){
@@ -66,6 +67,24 @@ func main(){
 	writeingCSV()
 
 	readingCSV()
+
+	compression()
+}
+
+func compression(){
+
+	f, e1 := os.Create("/tmp/test.gz")
+	defer f.Close()
+	check(e1)
+	gz := gzip.NewWriter(f)
+	defer func(){
+
+		gz.Flush()
+		gz.Close()
+	}()
+
+	_, e2 := gz.Write([]byte("hello world\n"))
+	check(e2)
 }
 
 func writeingCSV(){
