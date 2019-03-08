@@ -42,6 +42,38 @@ func main(){
 	pointers()
 
 	goroutines()
+
+	channels()
+}
+
+func channels(){
+
+	done := make(chan bool)
+	ping := make(chan string, 10)
+	pong := make(chan string, 10)
+	go pinger(ping, pong)
+	go ponger(ping, pong)
+
+	ping <- "ping"
+	<- done
+	fmt.Println("Done")
+}
+
+func pinger(ping chan string, pong chan string){
+	for {
+		fmt.Println(<-ping)
+		time.Sleep(time.Millisecond * 300)
+		pong <- "pong"
+	}
+}
+
+func ponger(ping chan string, pong chan string){
+
+	for{
+		fmt.Println(<-pong)
+		time.Sleep(time.Millisecond * 300)
+		ping <- "ping"
+	}
 }
 
 var wg sync.WaitGroup
