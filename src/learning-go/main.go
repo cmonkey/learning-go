@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"math/rand"
 	"formulas"
 	"time"
 	"sync"
@@ -43,9 +44,22 @@ func main(){
 
 	goroutines()
 
-	channels()
+	//channels()
 
-	logger()
+	//logger()
+
+	randomNumberGenerator()
+}
+
+func randomNumberGenerator(){
+
+
+	for i := 0; i < 5; i++{
+
+		x := rand.Intn(100)
+		y := rand.Float64() * 5
+		fmt.Println(x, y)
+	}
 }
 
 func logger(){
