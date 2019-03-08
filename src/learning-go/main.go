@@ -32,6 +32,24 @@ func main(){
 	myMake()
 
 	collection()
+
+	loops()
+}
+
+func loops(){
+	for i := 0; i < 5; i++{
+	  fmt.Println("Counter:", i)
+	}
+
+	xs := []int{1,2,3,4}
+	for i, e := range xs{
+	  fmt.Printf("i=%d, and e = %d\n", i, e)
+	}
+
+	kv := map[string]string{"foo":"bar", "baz":"quz"}
+	for k, v := range(kv){
+	  fmt.Printf("k=%s, v=%s\n", k, v)
+	}
 }
 
 func controlFlow(){
