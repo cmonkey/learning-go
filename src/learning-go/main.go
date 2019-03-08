@@ -34,6 +34,21 @@ func main(){
 	collection()
 
 	loops()
+
+	errorHandlingAndDeferPanicAndRecover()
+}
+
+func errorHandlingAndDeferPanicAndRecover(){
+	defer func(){
+		if err := recover(); err != nil{
+fmt.Println("handling error: ", err)
+			panic("MyError message")
+		}else{
+fmt.Println("Nothing happened")
+		}
+	}()
+	xs := []int{1}
+	fmt.Println("xs:", xs[0])
 }
 
 func loops(){
