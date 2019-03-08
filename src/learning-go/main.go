@@ -10,6 +10,8 @@ import (
 	"sync"
 	"github.com/google/uuid"
 	"os"
+	"io/ioutil"
+	"bufio"
 )
 
 func main(){
@@ -55,6 +57,8 @@ func main(){
 	myUUid()
 
 	writeStringToFile()
+
+	writeBytesToFile()
 }
 
 func check(e error){
@@ -73,6 +77,32 @@ func writeStringToFile(){
 	check(err)
 	fmt.Printf("wrote %d bytes\n", n3)
 	f.Sync()
+}
+
+func writeBytesToFile(){
+	// write bytes to a file
+	data := []byte("Hello There!\n")
+	err := ioutil.WriteFile("/tmp/test1.txt", data, 0644)
+	check(err)
+
+	// write bytes to a file
+	data2 := []byte{115, 111, 109, 101, 10}
+	file2, err := os.Create("/tmp/test2.dat")
+	defer file2.Close()
+	check(err)
+	n, err := file2.Write(data2)
+	fmt.Printf("wrote %d bytes\n", n)
+	check(err)
+	file2.Sync()
+
+	// write bytes to a file more efficiently
+	file3, err := os.Create("/tmp/test3.dat")
+	defer file3.Close()
+	writer := bufio.NewWriter(file3)
+	n2, err := writer.WriteString("buffered\n")
+	fmt.Printf("wrote %d bytes\n", n2)
+	writer.Flush()
+
 }
 
 func myUUid(){
