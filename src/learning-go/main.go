@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	"os"
 	"io/ioutil"
+
 	"bufio"
 	"encoding/csv"
 	"compress/gzip"
@@ -25,8 +26,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"net/http"
-	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func main(){
@@ -103,25 +102,6 @@ func main(){
 
 	callRequestUrl()
 
-	testAddOne()
-
-	testAddOne2()
-}
-
-func testAddOne(t *testing.T){
-
-	x := 1
-	addOne(&x)
-	if x != 2{
-
-		t.Fatal("Does not add one ")
-	}
-}
-
-func testAddOne2(t *testing.T){
-
-	x := 1
-	assert.Equal(t, addOne(&x), 2, "Does not add one ")
 }
 
 func callRequestUrl(){
@@ -440,7 +420,7 @@ func goroutines(){
 }
 
 func addOne(x *int){
-      *x = *x + 2
+      *x = *x + 1
 }
 
 func pointers(){
