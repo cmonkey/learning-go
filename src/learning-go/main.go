@@ -97,7 +97,17 @@ func main(){
 
 	jsonEncoding()
 
-	listenHttpServer()
+	//listenHttpServer()
+
+	callRequestUrl()
+}
+
+func callRequestUrl(){
+
+	res, _ := http.Get("http://baidu.com/robots.txt")
+	defer res.Body.Close()
+	robots, _ := ioutil.ReadAll(res.Body)
+	fmt.Printf("%s", robots)
 }
 
 func rootHandler(w http.ResponseWriter, req *http.Request){
