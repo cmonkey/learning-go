@@ -28,6 +28,8 @@ func main(){
 	formulasFunc()
 
 	controlFlow()
+
+	myMake()
 }
 
 func controlFlow(){
@@ -79,4 +81,16 @@ func shorter(){
 	d := "cmonkey"
 	e := 12 + 5i
 	fmt.Println(a, b, c , d, e)
+}
+
+func myMake(){
+	xs := make([]int, 3)
+	xs[0] = 1
+	xs[1] = 2
+
+	kv := make(map[string]string)
+	kv["foo"] = "bar"
+	kv["baz"] = "quz"
+
+	fmt.Printf("xs is %d, and ys is %s", xs, kv)
 }
