@@ -19,6 +19,17 @@ func main(){
 
 	shorter()
 
+	fmt.Println(hello(world))
+
+}
+
+func world() string {
+	return "World"
+}
+
+func hello(f func() string) string{
+	return "Hello " + f() + "!"
+
 }
 
 func shorter(){
