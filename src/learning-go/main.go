@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 )
 
 func main(){
@@ -21,6 +22,15 @@ func main(){
 
 	fmt.Println(hello(world))
 
+	mymath()
+
+}
+
+func mymath(){
+	pi := math.Pi
+	circum := pi * 6
+	surface := math.Pow(6,2) * pi / 4
+	fmt.Printf("circum %f surface %f", circum, surface)
 }
 
 func world() string {
