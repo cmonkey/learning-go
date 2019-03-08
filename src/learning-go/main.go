@@ -12,6 +12,7 @@ import (
 	"os"
 	"io/ioutil"
 	"bufio"
+	"encoding/csv"
 )
 
 func main(){
@@ -60,7 +61,33 @@ func main(){
 
 	writeBytesToFile()
 
-	readingFiles()
+	//readingFiles()
+
+	writeingCSV()
+}
+
+func writeingCSV(){
+
+	records := [][]string{
+		{"first_name", "last_name", "username"},
+		{"Rob", "Pike", "rob"},
+		{"Ken", "Thompson", "ken"},
+		{"Robert", "Griesemer", "gri"},
+
+	}
+
+	// write a record to console
+	f, _ := os.Create("/tmp/names.csv")
+	defer f.Close()
+	cw := csv.NewWriter(bufio.NewWriter(f))
+
+	for _, record := range records {
+
+		if err := cw.Write(record); err != nil{
+			log.Fatal("error writing record to csv:", err)
+		}
+	}
+	cw.Flush()
 }
 
 func check(e error){
