@@ -26,6 +26,29 @@ func main(){
 	mymath()
 
 	formulasFunc()
+
+	controlFlow()
+}
+
+func controlFlow(){
+	x := 2
+	if x == 1{
+	  fmt.Println("One")
+	}else if x == 2{
+	  fmt.Println("Two")
+	}else{
+	  fmt.Println("something else")
+	}
+
+	switch x {
+	case 1:
+		fmt.Println("One")
+	case 2:
+		fmt.Println("Two")
+	default:
+		fmt.Println("something else")
+
+	}
 }
 
 func mymath(){
