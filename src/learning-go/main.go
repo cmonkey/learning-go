@@ -88,6 +88,8 @@ func main(){
 	sha256Digest()
 
 	encryptByAES()
+
+	decryptByAES()
 }
 
 func encryptByAES(){
@@ -99,15 +101,28 @@ func encryptByAES(){
 	io.ReadFull(cryptoRand.Reader, nonce)
 	aesgcm, _ := cipher.NewGCM(block)
 	ciphertext := aesgcm.Seal(nil, nonce, plaintext, nil)
-	fmt.Printf("Nonce: %x\n", nonce)
-	fmt.Printf("Cipher: %x\n", ciphertext)
+	fmt.Printf("encryptByAES Nonce: %x\n", nonce)
+	fmt.Printf("encryptByAES Cipher: %x\n", ciphertext)
+}
+
+func decryptByAES(){
+	key, _ := hex.DecodeString("6368616e676520746869732070617373776f726420746f206120736563726574")
+	nonce, _ := hex.DecodeString("02f6637d9b3de2f4590ca715")
+	ciphertext,_ := hex.DecodeString("117ddde7ce474725db148096add3a751d7f72a27b8d65f4e9c36d061")
+
+	block, _ := aes.NewCipher(key)
+	aesgcm, _ := cipher.NewGCM(block)
+	plaintext, _ := aesgcm.Open(nil, nonce, ciphertext, nil)
+	fmt.Printf("decryptByAES %s\n", plaintext)
+
+
 }
 
 func sha256Digest(){
 
 	h := sha256.New()
 	h.Write([]byte("Hello World!\n"))
-	fmt.Printf("%x", h.Sum(nil))
+	fmt.Printf("sha256 Digest = %x\n", h.Sum(nil))
 }
 
 func myMd5(){
