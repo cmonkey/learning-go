@@ -19,6 +19,10 @@ import (
 	"encoding/base64"
 	"crypto/md5"
 	"crypto/sha256"
+	"crypto/aes"
+	cryptoRand "crypto/rand"
+	"crypto/cipher"
+	"encoding/hex"
 )
 
 func main(){
@@ -82,6 +86,21 @@ func main(){
 	myMd5()
 
 	sha256Digest()
+
+	encryptByAES()
+}
+
+func encryptByAES(){
+
+	key, _ := hex.DecodeString("6368616e676520746869732070617373776f726420746f206120736563726574")
+	plaintext := []byte("Hello World!")
+	block, _ := aes.NewCipher(key)
+	nonce := make([]byte, 12)
+	io.ReadFull(cryptoRand.Reader, nonce)
+	aesgcm, _ := cipher.NewGCM(block)
+	ciphertext := aesgcm.Seal(nil, nonce, plaintext, nil)
+	fmt.Printf("Nonce: %x\n", nonce)
+	fmt.Printf("Cipher: %x\n", ciphertext)
 }
 
 func sha256Digest(){
