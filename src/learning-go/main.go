@@ -90,6 +90,20 @@ func main(){
 	encryptByAES()
 
 	decryptByAES()
+
+	dateTime()
+}
+
+func dateTime(){
+
+	now := time.Now()
+	fmt.Println(now.Format(time.RFC3339))
+	fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d-00:00\n",
+		now.Year(), now.Month(), now.Day(),
+		now.Hour(), now.Minute(), now.Second())
+
+	parsed, _ := time.Parse(time.RFC3339, "2018-11-24T19:02:17+01:00")
+	fmt.Println(parsed)
 }
 
 func encryptByAES(){
