@@ -30,6 +30,8 @@ func main(){
 	controlFlow()
 
 	myMake()
+
+	collection()
 }
 
 func controlFlow(){
@@ -93,4 +95,15 @@ func myMake(){
 	kv["baz"] = "quz"
 
 	fmt.Printf("xs is %d, and ys is %s", xs, kv)
+}
+
+func collection(){
+	// array
+	xs := [2]int{1,2}
+	// slice
+	ys := []int{1,2,3}
+
+	// map
+	kv := map[string]string{"foo":"bar", "quz":"quz", "abc":"def"}
+	fmt.Printf("xs=%d, ys=%d, zs=%s", xs, ys, kv)
 }
