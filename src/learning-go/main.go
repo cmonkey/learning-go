@@ -23,6 +23,7 @@ import (
 	cryptoRand "crypto/rand"
 	"crypto/cipher"
 	"encoding/hex"
+	"encoding/json"
 )
 
 func main(){
@@ -92,6 +93,23 @@ func main(){
 	decryptByAES()
 
 	dateTime()
+
+	jsonEncoding()
+}
+
+type Person struct{
+
+	Name string `json:"name`
+	Age int `json:""age`
+}
+func jsonEncoding(){
+	person := Person{"cmonkey", 30}
+	bytes, _ := j
+son.Marshal(person)
+	fmt.Println(string(bytes))
+	p := Person{}
+	json.Unmarshal(bytes, &p)
+	fmt.Println(p)
 }
 
 func dateTime(){
