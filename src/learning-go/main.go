@@ -44,6 +44,16 @@ func main(){
 	goroutines()
 
 	channels()
+
+	logger()
+}
+
+func logger(){
+
+	log.Println("Normal")
+	log.Fatal("Fatal")
+	// log and then panic
+	log.Panic("Panic")
 }
 
 func channels(){
