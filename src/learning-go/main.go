@@ -5,6 +5,8 @@ import (
 	"log"
 	"math"
 	"formulas"
+	"time"
+	"sync"
 )
 
 func main(){
@@ -38,6 +40,24 @@ func main(){
 	errorHandlingAndDeferPanicAndRecover()
 
 	pointers()
+
+	goroutines()
+}
+
+var wg sync.WaitGroup
+func say(msg string){
+	for i := 0; i < 3; i++{
+		fmt.Printf("%s world!\n", msg)
+		time.Sleep(time.Millisecond * 100)
+	}
+	wg.Done()
+}
+func goroutines(){
+	wg.Add(1)
+	go say("hello")
+	wg.Add(1)
+	go say("goodbye")
+	wg.Wait()
 }
 
 func addOne(x *int){
