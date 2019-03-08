@@ -8,6 +8,7 @@ import (
 	"formulas"
 	"time"
 	"sync"
+	"github.com/google/uuid"
 )
 
 func main(){
@@ -49,6 +50,16 @@ func main(){
 	//logger()
 
 	randomNumberGenerator()
+	myUUid()
+}
+
+func myUUid(){
+
+	for i:=0; i<5;i++{
+
+		id, _ := uuid.NewRandom()
+		fmt.Println(id.String())
+	}
 }
 
 func randomNumberGenerator(){
