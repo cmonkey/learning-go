@@ -9,6 +9,7 @@ import (
 	"time"
 	"sync"
 	"github.com/google/uuid"
+	"os"
 )
 
 func main(){
@@ -50,7 +51,28 @@ func main(){
 	//logger()
 
 	randomNumberGenerator()
+
 	myUUid()
+
+	writeStringToFile()
+}
+
+func check(e error){
+
+	if e != nil{
+		panic(e)
+	}
+}
+
+func writeStringToFile(){
+
+	f, err := os.Create("/tmp/test.txt")
+	check(err)
+	defer f.Close()
+	n3, err := f.WriteString("hello World\n")
+	check(err)
+	fmt.Printf("wrote %d bytes\n", n3)
+	f.Sync()
 }
 
 func myUUid(){
