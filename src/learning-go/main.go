@@ -14,6 +14,8 @@ import (
 	"bufio"
 	"encoding/csv"
 	"compress/gzip"
+	"io"
+	"bytes"
 )
 
 func main(){
@@ -69,6 +71,8 @@ func main(){
 	readingCSV()
 
 	compression()
+
+	readingZIP()
 }
 
 func compression(){
@@ -85,6 +89,20 @@ func compression(){
 
 	_, e2 := gz.Write([]byte("hello world\n"))
 	check(e2)
+}
+
+func readingZIP(){
+
+	f, e1 := os.Open("/tmp/test.gz")
+	defer f.Close()
+	check(e1)
+	gz, e2 := gzip.NewReader(f)
+	check(e2)
+	var buf bytes.Buffer
+	_, e3 := io.Copy(&buf, gz)
+	check(e3)
+	fmt.Print(string(buf.Bytes()))
+
 }
 
 func writeingCSV(){
