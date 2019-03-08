@@ -24,6 +24,7 @@ import (
 	"crypto/cipher"
 	"encoding/hex"
 	"encoding/json"
+	"net/http"
 )
 
 func main(){
@@ -95,6 +96,19 @@ func main(){
 	dateTime()
 
 	jsonEncoding()
+
+	listenHttpServer()
+}
+
+func rootHandler(w http.ResponseWriter, req *http.Request){
+
+	io.WriteString(w, "Hello, World\n")
+}
+
+func listenHttpServer(){
+
+	http.HandleFunc("/", rootHandler)
+	http.ListenAndServe(":8080", nil)
 }
 
 type Person struct{
@@ -104,8 +118,7 @@ type Person struct{
 }
 func jsonEncoding(){
 	person := Person{"cmonkey", 30}
-	bytes, _ := j
-son.Marshal(person)
+	bytes, _ := json.Marshal(person)
 	fmt.Println(string(bytes))
 	p := Person{}
 	json.Unmarshal(bytes, &p)
