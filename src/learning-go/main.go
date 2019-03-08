@@ -36,6 +36,18 @@ func main(){
 	loops()
 
 	errorHandlingAndDeferPanicAndRecover()
+
+	pointers()
+}
+
+func addOne(x *int){
+      *x = *x + 2
+}
+
+func pointers(){
+	x := 1
+	addOne(&x)
+	fmt.Println("x is ", x)
 }
 
 func errorHandlingAndDeferPanicAndRecover(){
