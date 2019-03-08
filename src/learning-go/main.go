@@ -64,6 +64,8 @@ func main(){
 	//readingFiles()
 
 	writeingCSV()
+
+	readingCSV()
 }
 
 func writeingCSV(){
@@ -88,6 +90,20 @@ func writeingCSV(){
 		}
 	}
 	cw.Flush()
+}
+
+func readingCSV(){
+
+	f, _ := os.Open("/tmp/names.csv")
+	defer f.Close()
+	cr := csv.NewReader(bufio.NewReader(f))
+	names, _ := cr.ReadAll()
+	for _, row := range names{
+		for i, field := range row {
+
+			fmt.Println(i, field)
+		}
+	}
 }
 
 func check(e error){
