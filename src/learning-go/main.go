@@ -16,6 +16,7 @@ import (
 	"compress/gzip"
 	"io"
 	"bytes"
+	"encoding/base64"
 )
 
 func main(){
@@ -73,6 +74,19 @@ func main(){
 	compression()
 
 	readingZIP()
+
+	base64EncodingAndDecoding()
+}
+
+func base64EncodingAndDecoding(){
+
+	msg := "Hello World!"
+	encoded := base64.StdEncoding.EncodeToString([]byte(msg))
+	fmt.Println(encoded)
+
+	enc := "SGVsbG8gV29ybGQh"
+	decoded, _ := base64.StdEncoding.DecodeString(enc)
+	fmt.Println(string(decoded))
 }
 
 func compression(){
