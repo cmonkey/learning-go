@@ -17,6 +17,7 @@ import (
 	"io"
 	"bytes"
 	"encoding/base64"
+	"crypto/md5"
 )
 
 func main(){
@@ -76,6 +77,15 @@ func main(){
 	readingZIP()
 
 	base64EncodingAndDecoding()
+
+	myMd5()
+}
+
+func myMd5(){
+
+	h := md5.New()
+	h.Write([]byte("Hello Wrold!\n"))
+	fmt.Printf("%xi", h.Sum(nil))
 }
 
 func base64EncodingAndDecoding(){
