@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"crypto/md5"
+	"crypto/sha256"
 )
 
 func main(){
@@ -79,6 +80,15 @@ func main(){
 	base64EncodingAndDecoding()
 
 	myMd5()
+
+	sha256Digest()
+}
+
+func sha256Digest(){
+
+	h := sha256.New()
+	h.Write([]byte("Hello World!\n"))
+	fmt.Printf("%x", h.Sum(nil))
 }
 
 func myMd5(){
