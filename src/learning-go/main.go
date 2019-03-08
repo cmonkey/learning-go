@@ -55,7 +55,7 @@ func channels(){
 	go ponger(ping, pong)
 
 	ping <- "ping"
-	<- done
+	<-done
 	fmt.Println("Done")
 }
 
